@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-      {TBD: name} Community Group Charter
+      Machine Learning for the Web Community Group Charter
     </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -10,7 +10,7 @@
     <style>
       body {
         max-width: 60em;
-        margin: auto;;
+        margin: auto;
       }
       *:target {
         background-color: yellow;
@@ -29,46 +29,143 @@
   </head>
   <body>
     <h1>
-      [DRAFT] <span class="remove">{TBD: name}</span> Community Group Charter
+      [DRAFT] Machine Learning for the Web Community Group Charter
     </h1>
-    <p>
-      <span class="remove">{TBD: remove next sentence before submitting for
-      approval}</span> This Charter is work in progress. To submit feedback,
-      please use <span class="remove">{TBD:GitHub repository URL}</span> Issues
-      where Charter is being developed.
+    <p class="remove">
+      <strong>This Charter is work in progress. To submit feedback, please use
+      <a href="https://github.com/webmachinelearning/charter/issues/new">GitHub
+      Issues</a>.</strong>
     </p>
     <ul>
-      <li>This Charter: <span class="remove">{TBD: URI}</span>
+      <li>This Charter: <a href=
+      "https://webmachinelearning.github.io/charter/">https://webmachinelearning.github.io/charter/</a>
       </li>
-      <li>Previous Charter: <span class="remove">{TBD: URI}</span>
+      <li>Previous Charter:
       </li>
-      <li>Start Date: <span class="remove">{TBD: date the charter takes effect,
-      estimate if not known. Update this if the charter is revised and include
-      a link to the previous version of the charter.}</span>
+      <li>Start Date:
       </li>
-      <li>Last Modifed: <span class="remove">{TBD: If the system does not
-      automatically provide information about the date of the last
-      modification, it can be useful to include that in the charter.}</span>
+      <li>Last Modified: <a href=
+      "https://github.com/webmachinelearning/charter/commits/master">commits/master</a>
       </li>
     </ul>
     <h2 id="goals">
       Goals
     </h2>
-    <p></p>
+    <p>
+      Machine learning (ML), and especially its subset deep learning, are being
+      successfully used in native platforms in advanced computationally-heavy
+      areas such as image recognition, speech recognition, and natural language
+      processing. Currently, the Web is unable to support advanced machine
+      learning use cases in a performant manner due in part to lack of
+      optimized low-level APIs for machine learning. This Community Group will
+      develop Web APIs to enable the creation of machine learning web
+      experiences that are embeddable in the Web of today, and enable
+      progressive enhancement of existing web applications and frameworks. With
+      these Web APIs, web developers can make interoperable content on all
+      hardware platforms.
+    </p>
+    <p>
+      The mission of the Machine Learning for the Web Community Group (WebML
+      CG) is to make Machine Learning a first-class web citizen by incubating
+      and developing a dedicated low-level Web API for machine learning
+      inference in the browser and in products using modern web engines.
+      Following the precepts of the <a href=
+      "https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>, by
+      exposing these low-level capabilities, high-level capabilities that are
+      task-specific—such as vision and natural language processing using
+      built-in models—could be explained and implemented in terms of the
+      low-level capabilities that use custom models pre-trained and deployed by
+      web developers. In other words, the low-level Web API allows high-level
+      feature experimentation and iteration by web developers.
+    </p>
+    <p>
+      Currently, machine learning inference in the browser uses the WebGL
+      graphics API with limited or no access to platform capabilities
+      beneficial for ML such as CPU parallelism, general-purpose GPU, or
+      dedicated ML hardware accelerators.
+    </p>
+    <p>
+      The proposed Web API aims to expose generic capabilities to the Web
+      required to provide close-to-native machine learning performance in the
+      browser. In addition to the performance benefits, inference in the
+      browser as opposed to in the cloud enhances privacy, since input data
+      such as locally sourced images or video streams stay within the browser's
+      sandbox. Local processing also enables machine learning use cases that
+      require low latency, such as object detection in immersive web
+      experiences.
+    </p>
     <h2 id="scope-of-work">
       Scope of Work
     </h2>
-    <p></p>
+    <h3 id="neural-network-inference">
+      Neural network inference
+    </h3>
+    <p>
+      A Web API for neural network inference hardware acceleration that:
+    </p>
+    <ul>
+      <li>Allow to construct a neural network computational graph by common
+      building blocks, including constant values and base operations such as
+      convolution, pooling, softmax, normalization, fully connected,
+      activation, recurrent neural network (RNN) and long short-term memory
+      (LSTM);
+      </li>
+      <li>Allow to compile the neural network to native optimized format for
+      hardware execution;
+      </li>
+      <li>Allow to setup input from various sources on the Web, e.g. array
+      buffers, media streams, schedule the asynchronous hardware execution, and
+      retrieve the output when hardware execution completes.
+      </li>
+    </ul>
+    <p>
+      The APIs in scope of this group will not be tied to any particular
+      platform and will be implementable on top of existing major platform
+      APIs, such as Android Neural Networks API, Windows DirectML, and
+      macOS/iOS Metal Performance Shaders and Basic Neural Network Subroutines.
+    </p>
+    <p>
+      Each specification should detail all known security and privacy
+      implications for implementers, Web authors, and end users.
+    </p>
     <h3 id="out-of-scope">
       Out of Scope
     </h3>
-    <p></p>
+    <p>
+      The scope is limited to development of interfaces that expose inference
+      capabilities of the modern platforms beneficial or purpose-built for ML.
+      Training capabilities are out of scope due to limited availability of
+      respective platform APIs.
+    </p>
+    <p>
+      This Community Group will not define any hardware features or algorithms.
+    </p>
+    <p>
+      To avoid overlap with existing work, generic primitives used by
+      traditional machine learning algorithms such as base linear algebra
+      operations are out of scope. The WebGL and WebGPU shaders and WebAssembly
+      SIMD are expected to address these requirements, see the <a href=
+      "#coordination">Coordination</a> section for details.
+    </p>
+    <p>
+      This Community Group does not attempt to mandate a specific neural
+      network or Machine Learning model schema or format. Other groups are
+      expected to address these requirements of this evolving area.
+    </p>
     <h2 id="deliverables">
       Deliverables
     </h2>
     <h3 id="specifications">
       Specifications
     </h3>
+    <dl>
+      <dt>
+        Web Neural Network API
+      </dt>
+      <dd>
+        A dedicated API for neural network inference hardware acceleration
+      </dd>
+    </dl>
     <h3 id="non-normative-reports">
       Non-Normative Reports
     </h3>
@@ -85,10 +182,85 @@
       see the GitHub LICENSE file for test suite contribution licensing
       information.
     </p>
-    <h2 id="liaisons">
-      Dependencies or Liaisons
+    <h2 id="coordination">
+      Coordination
     </h2>
-    <p></p>
+    <p>
+      Technical coordination with the following Groups is expected:
+    </p>
+    <dl>
+      <dt>
+        <a href="https://www.w3.org/community/gpu/">GPU for the Web Community
+        Group</a>
+      </dt>
+      <dd>
+        The GPU for the Web Community Group defines a Shading Language that may
+        be used to implement traditional machine learning algorithms
+        efficiently. The WebML Community Group should coordinate with this
+        group to avoid overlap.
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <a href="https://www.w3.org/community/webassembly/">WebAssembly
+        Community Group</a>
+      </dt>
+      <dd>
+        The WebAssembly Community Group incubates a proposal for a 128-bit SIMD
+        support in WebAssembly that can be used to implement traditional
+        machine learning algorithms efficiently. The WebML Community Group
+        should coordinate with this group to avoid overlap.
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <a href="https://www.khronos.org/webgl/">WebGL Community Group</a>
+      </dt>
+      <dd>
+        The WebGL Working Group defines a WebGL API that supports the OpenGL ES
+        Shading Language (GLSL). The GLSL can be used to implement traditional
+        machine learning algorithms efficiently. Furthermore, this group
+        incubates a proposal for a WebGL 2.0 Compute specification that aims to
+        provide an efficient way to run general-purpose GPU (GPGPU) computing
+        workloads such as machine learning algorithms in the WebGL context.
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <a href="https://www.w3.org/2011/04/webrtc/">Web Real-Time
+        Communications Working Group</a>
+      </dt>
+      <dd>
+        The Web Real-Time Communications Working Group defines the MediaStream
+        API that is one possible inference input data source. The WebML
+        Community Group should coordinate with this group to ensure its future
+        work considers <a href=
+        "https://w3c.github.io/webrtc-nv-use-cases/#machinelearning*">Machine
+        Learning</a> use cases.
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <a href="https://www.w3.org/2011/audio/">Audio Working Group</a>
+      </dt>
+      <dd>
+        The Audio Working Group defines the Web Audio API that is one possible
+        inference input data source. The WebML Community Group should
+        coordinate with this group to ensure its future work considers Machine
+        Learning use cases.
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <a href="https://www.w3.org/das/">Devices and Sensors Working Group</a>
+      </dt>
+      <dd>
+        The Devices and Sensors Working Group defines Sensor APIs that are
+        possible inference input data sources. The WebML Community Group should
+        coordinate with this group to ensure its future work considers Machine
+        Learning use cases.
+      </dd>
+    </dl>
     <h2 id="process">
       Community and Business Group Process
     </h2>
