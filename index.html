@@ -6,7 +6,7 @@
     </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/base">
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/base">
     <style>
       body {
         max-width: 60em;
@@ -18,24 +18,50 @@
       li {
         margin-bottom: 9pt;
       }
+      .note, .example {
+        position: relative;
+        margin: 1.5em 0 1em;
+        padding: 1em;
+      }
+      .note::before, .example::before {
+        padding: 0.15em 0.25em;
+        position: absolute;
+        top: -0.8em;
+        left: -0.8em;
+      }
       .note {
-        background-color: yellow;
-        padding: 10px;
+        background-color: #dfd;
+        color: green;
+        font-style: italic;
+      }
+      .note::before {
+        background-color: green;
+        color: white;
+        font-style: normal;
+        content: "Note: ";
       }
       .remove {
         background-color: yellow;
       }
+      header img {
+        width: 600px;
+        max-width: 100%;
+      }
     </style>
   </head>
   <body>
-    <h1>
-      Web Machine Learning Community Group Charter
-    </h1>
+    <header>
+      <img src="https://raw.githubusercontent.com/webmachinelearning/webmachinelearning.github.io/refs/heads/main/logos/webml/logo-webml-white.svg" alt>
+      <h1>
+        [DRAFT] Web Machine Learning Community Group Charter
+      </h1>
+    </header>
     <ul>
       <li>This Charter: <a href=
       "https://webmachinelearning.github.io/charter/">https://webmachinelearning.github.io/charter/</a>
       </li>
-      <li>Previous Charter: n/a
+      <li>Previous Charter: <a href="https://github.com/webmachinelearning/charter/blob/215dcf88af40f89e40fc702f4866ee79d0647500/index.html">
+        215dcf8</a>
       </li>
       <li>Start Date: 2018-10-11
       </li>
@@ -50,53 +76,54 @@
       Machine learning (ML), and especially its subset deep learning, are being
       successfully used in native platforms in advanced computationally-heavy
       areas such as image recognition, speech recognition, and natural language
-      processing. Currently, the Web is unable to support advanced machine
-      learning use cases in a performant manner due in part to lack of
-      optimized low-level APIs for machine learning. This Community Group will
+      processing. The mission of the Web Machine Learning Community Group (WebML
+      CG) is to make Machine Learning a first-class web citizen by incubating
+      Web APIs for machine learning inference in the browser and in products using
+      modern web engines.
+    </p>
+    <p>
+      This Community Group will
       develop Web APIs to enable the creation of machine learning web
       experiences that are embeddable in the Web of today, and enable
-      progressive enhancement of existing web applications and frameworks. With
-      these Web APIs, web developers can make interoperable content on all
-      hardware platforms.
+      progressive enhancement of existing web applications and frameworks.
     </p>
     <p>
-      The mission of the Web Machine Learning Community Group (WebML
-      CG) is to make Machine Learning a first-class web citizen by incubating
-      and developing a dedicated low-level Web API for machine learning
-      inference in the browser and in products using modern web engines.
+      Historically, the Web has been unable to support advanced on-device
+      machine learning use cases in a performant manner due in part to lack of
+      optimized low-level APIs for machine learning. Recent advancements in the
+      hardware-accelerated <a href="#neural-network-inference">low-level APIs</a>
+      for neural network inference have demonstrated feasibility and informed
+      work on complementary higher-level <a href="#task-specific-apis">
+      task-specific APIs</a>.
+    </p>
+    <p>
       Following the precepts of the <a href=
-      "https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>, by
-      exposing these low-level capabilities, high-level capabilities that are
-      task-specific—such as vision and natural language processing using
-      built-in models—could be explained and implemented in terms of the
-      low-level capabilities that use custom models pre-trained and deployed by
-      web developers. In other words, the low-level Web API allows high-level
-      feature experimentation and iteration by web developers.
-    </p>
-    <p>
-      Currently, machine learning inference in the browser uses the WebGL
-      graphics API with limited or no access to platform capabilities
-      beneficial for ML such as CPU parallelism, general-purpose GPU, or
-      dedicated ML hardware accelerators.
-    </p>
-    <p>
-      The proposed Web API aims to expose generic capabilities to the Web
-      required to provide close-to-native machine learning performance in the
-      browser. In addition to the performance benefits, inference in the
-      browser as opposed to in the cloud enhances privacy, since input data
-      such as locally sourced images or video streams stay within the browser's
-      sandbox. Local processing also enables machine learning use cases that
-      require low latency, such as object detection in immersive web
-      experiences.
+      "https://extensiblewebmanifesto.org/">Extensible Web Manifesto</a>,
+      higher-level task-specific APIs can be implemented in terms of the
+      low-level APIs that use custom models downloaded over the network.
+      To complement this approach, the Community Group will incubate selected
+      task-specific APIs to enable reuse of the built-in models that are
+      distributed as part of the browser or the underlying software platform.
     </p>
     <h2 id="scope-of-work">
       Scope of Work
     </h2>
+    <p class="note">
+      The scope of work for this Community Group extends beyond the current
+      scope of the <a href="https://www.w3.org/groups/wg/webmachinelearning/">
+      Web Machine Learning Working Group</a>. Deliverables incubated in this
+      Community Group may graduate to the Working Group for standardization.
+    </p>
     <h3 id="neural-network-inference">
       Neural network inference
     </h3>
+    <p class="note">
+      <a href="https://www.w3.org/TR/webnn/">Web Neural Network API</a> has
+      graduated to the <a href="https://www.w3.org/groups/wg/webmachinelearning/">
+      Web Machine Learning Working Group</a>.
+    </p>
     <p>
-      A Web API for neural network inference hardware acceleration that:
+      A low-level Web API for neural network inference hardware acceleration that:
     </p>
     <ul>
       <li>Allow to construct a neural network computational graph by common
@@ -112,6 +139,35 @@
       buffers, media streams, schedule the asynchronous hardware execution, and
       retrieve the output when hardware execution completes.
       </li>
+    </ul>
+    <h3 id="task-specific-apis">
+      Task-specific APIs
+    </h3>
+    <p>
+      A set of higher-level APIs that:
+    </p>
+    <ul>
+      <li>Detect the language of the given input text;</li>
+      <li>Translate input text to other languages;</li>
+      <li>Produce textual summaries of input text;</li>
+      <li>Produce new textual material given a writing task;</li>
+      <li>Rephrase input text.</li>
+    </ul>
+    <h3 id="prompt-api">
+      Prompt API
+    </h3>
+    <p>
+      A general-purpose API to prompt a language model directly using common
+      promping techniques to accomplish a variety of tasks, including:
+    </p>
+    <ul>
+      <li>Classification, tagging, and keyword extraction of arbitrary text;</li>
+      <li>Helping users compose text, such as blog posts, reviews, or biographies;</li>
+      <li>Summarizing, e.g. of articles, user reviews, or chat logs;</li>
+      <li>Generating titles or headlines from article contents;</li>
+      <li>Answering questions based on the unstructured contents of a web page;</li>
+      <li>Translation between languages;</li>
+      <li>Proofreading.</li>
     </ul>
     <p>
       The APIs in scope of this group will not be tied to any particular
@@ -158,7 +214,25 @@
         Web Neural Network API
       </dt>
       <dd>
-        A dedicated API for neural network inference hardware acceleration
+        A dedicated low-level API for neural network inference hardware acceleration.
+      </dd>
+      <dt>
+        Translator API
+      </dt>
+      <dd>
+        An API for translating text.
+      </dd>
+      <dt>
+        Writing Assistance APIs
+      </dt>
+      <dd>
+        A set of APIs to help web users with writing text.
+      </dd>
+      <dt>
+        Prompt API
+      </dt>
+      <dd>
+        An API for prompting browser-provided language models.
       </dd>
     </dl>
     <h3 id="non-normative-reports">
