@@ -60,10 +60,10 @@
       <li>This Charter: <a href=
       "https://webmachinelearning.github.io/charter/">https://webmachinelearning.github.io/charter/</a>
       </li>
-      <li>Previous Charter: <a href="https://github.com/webmachinelearning/charter/blob/a4da99c571e0dde143a508a1844b4aca7384b5f3/index.html">
+      <li>Previous Charter: <a href="https://github.com/webmachinelearning/charter/blob/d575b000e2a4742123d75c35d30546ead2b47bfe/index.html">
         a4da99c</a>
       </li>
-      <li>Start Date: 2025-05-19
+      <li>Start Date: 2025-09-25
       </li>
       <li>Last Modified: <a href=
       "https://github.com/webmachinelearning/charter/commits/master">commits/master</a>
@@ -78,8 +78,9 @@
       areas such as image recognition, speech recognition, and natural language
       processing. The mission of the Web Machine Learning Community Group (WebML
       CG) is to make Machine Learning a first-class web citizen by incubating
-      Web APIs for machine learning inference in the browser and in products using
-      modern web engines.
+      Web APIs for machine learning <strong>inference</strong> and <strong>
+      agentic web</strong> usages in the browser and in products using modern
+      web engines.
     </p>
     <p>
       This Community Group will
@@ -179,6 +180,17 @@
       <li>Answering questions based on the unstructured contents of a web page;</li>
       <li>Translation between languages.</li>
     </ul>
+    <h3 id="webmcp-api">
+      WebMCP API
+    </h3>
+    <p>
+      A Web API that allows web developers to expose their web application
+      functionality as tools — JavaScript functions with natural language
+      descriptions and structured schemas that can be invoked by AI agents,
+      browser assistants, and assistive technologies. The API is designed for
+      human-in-the-loop workflows where the user maintains visibility and
+      remains in control.
+    </p>
     <h3 id="out-of-scope">
       Out of Scope
     </h3>
@@ -203,6 +215,10 @@
       network or Machine Learning model schema or format. Other groups are
       expected to address these requirements of this evolving area.
     </p>
+    <p>
+      The WebMCP API is agnostic with respect to the underlying protocols and
+      does not aim to match the exact capabilities of the Model Context
+      Protocol (MCP).</p>
     <h2 id="deliverables">
       Deliverables
     </h2>
@@ -239,6 +255,13 @@
       </dt>
       <dd>
         An API for prompting browser-provided language models.
+      </dd>
+      <dt>
+        WebMCP API
+      </dt>
+      <dd>
+        An API for web apps to expose their functionality as tools to AI agents
+        and assistive technologies.
       </dd>
     </dl>
     <h3 id="non-normative-reports">
@@ -362,6 +385,18 @@
         machine learning (e.g., object recognition), and so the WebML Community
         Group should coordinate with these groups to ensure its work considers
         XR use cases.
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <a href="https://www.w3.org/groups/cg/agentprotocol/">AI Agent Protocol
+        Community Group</a>
+      </dt>
+      <dd>
+        The AI Agent Protocol Community Group develops protocols that enable AI
+        agents to discover, identify, and collaborate across the web. The WebML
+        Community Group should coordinate with this group to ensure these
+        protocols consider WebMCP API requirements, as applicable.
       </dd>
     </dl>
     <h2 id="process">
